@@ -12,15 +12,15 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('loan', function (Blueprint $table) {
             $table->increments('id');
+            $table->decimal('loanAmount', 21, 6)->nullable();
+            $table->integer('loanTerm')->nullable();
+            $table->decimal('interestRate',21,6)->nullable();
+            $table->string('startdate_month', 100)->nullable();
+            $table->string('startdate_year', 10)->nullable();
             $table->timestamps();
-            $table->string('title')->nullable();
-            $table->text('content')->nullable();
-            $table->string('category');
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            });
+        });
     }
 
     /**
@@ -30,6 +30,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('posts');
+        Schema::drop('loan');
     }
 }
